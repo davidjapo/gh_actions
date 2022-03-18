@@ -41,3 +41,4 @@ jobs:
       working-directory: ./python-app-ejemplo
       run: |
         coverage report -m --fail-under=90
+        exit 1
