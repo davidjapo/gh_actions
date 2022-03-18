@@ -41,4 +41,11 @@ jobs:
       working-directory: ./python-app-ejemplo
       run: |
         coverage report -m --fail-under=90
-        exit 1
+    - name: Package
+      working-directory: ./python-app-ejemplo
+      run: |
+        python -m build 
+    - name: Deploy to Pypi
+      working-directory: ./python-app-ejemplo
+      run: |
+        python -m twine upload dist/* --skip-existing -u ${{ secrets.PYPI_CREDENTIALS_USR }} -p ${{ secrets.PYPI_CREDENTIALS_PSW }}
